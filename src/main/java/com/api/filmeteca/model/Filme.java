@@ -6,6 +6,7 @@ public class Filme {
 
     private int id;
     private List<Categoria> genres;
+    private List<Integer> genre_ids;
     private String title;
     private String poster_path;
     private String backdrop_path;
@@ -18,6 +19,14 @@ public class Filme {
 
     public int getId() {
         return id;
+    }
+
+    public List<Integer> getGenre_ids() {
+        return genre_ids;
+    }
+
+    public void setGenre_ids(List<Integer> genre_ids) {
+        this.genre_ids = genre_ids;
     }
 
     public String getRelease_date() {
