@@ -16,6 +16,7 @@ public class FilmeService {
     private static String URL_BASE_POPULARES = "https://api.themoviedb.org/3/movie/popular?api_key=d7251e004d1f3faea8a9b0f9405646b6&language=pt-BR&page=1";
 
     private RestTemplate restTemplate;
+
     private Filme filme;
     private Filmoteca colecaoFilmes;
 

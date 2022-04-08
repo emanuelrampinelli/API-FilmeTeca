@@ -1,7 +1,6 @@
 package com.api.filmeteca.util;
 
 import java.util.List;
-
 import com.api.filmeteca.model.Filme;
 
 //Coletivo de Filmes
