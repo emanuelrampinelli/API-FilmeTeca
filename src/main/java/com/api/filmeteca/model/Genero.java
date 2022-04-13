@@ -1,6 +1,6 @@
 package com.api.filmeteca.model;
 
-public class Categoria {
+public class Genero {
 
     private int id;
     private String name;

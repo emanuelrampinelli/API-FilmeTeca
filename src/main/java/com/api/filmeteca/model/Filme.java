@@ -5,7 +5,7 @@ import java.util.List;
 public class Filme {
 
     private int id;
-    private List<Categoria> genres;
+    private List<Genero> genres;
     private List<Integer> genre_ids;
     private String title;
     private String poster_path;
@@ -45,11 +45,11 @@ public class Filme {
         this.status = status;
     }
 
-    public List<Categoria> getGenres() {
+    public List<Genero> getGenres() {
         return genres;
     }
 
-    public void setGenres(List<Categoria> genres) {
+    public void setGenres(List<Genero> genres) {
         this.genres = genres;
     }
 

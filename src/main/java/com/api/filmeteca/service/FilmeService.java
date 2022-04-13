@@ -11,9 +11,9 @@ public class FilmeService {
 
     private static String KEY_API = "api_key=d7251e004d1f3faea8a9b0f9405646b6";
     private static String LANGUAGE_PT_BR = "language=pt-BR";
-    private static String URL_BASE_FILME = "https://api.themoviedb.org/3/movie/";
 
-    private static String URL_BASE_POPULARES = "https://api.themoviedb.org/3/movie/popular?api_key=d7251e004d1f3faea8a9b0f9405646b6&language=pt-BR&page=1";
+    private static String URL_BASE_FILME = "https://api.themoviedb.org/3/movie/";
+    private static String URL_BASE_POPULARES = "https://api.themoviedb.org/3/movie/popular?api_key=d7251e004d1f3faea8a9b0f9405646b6&language=pt-BR&page=";
 
     private RestTemplate restTemplate;
 
@@ -33,9 +33,9 @@ public class FilmeService {
         return this.filme;
     }
 
-    public Filmoteca getFilmesPopulares() {
+    public Filmoteca getFilmesPopulares(int indexPaginacao) {
 
-        this.colecaoFilmes = this.restTemplate.getForObject(URL_BASE_POPULARES, Filmoteca.class);
+        this.colecaoFilmes = this.restTemplate.getForObject(montarUrlFilmesPopulares(indexPaginacao), Filmoteca.class);
 
         return colecaoFilmes;
     }
@@ -43,5 +43,10 @@ public class FilmeService {
     private String montaUrlFilme(String idFilme) {
 
         return URL_BASE_FILME + idFilme + "?" + KEY_API + "&" + LANGUAGE_PT_BR;
+    }
+
+    private String montarUrlFilmesPopulares(int indexPaginacao) {
+
+        return URL_BASE_POPULARES + indexPaginacao;
     }
 }
