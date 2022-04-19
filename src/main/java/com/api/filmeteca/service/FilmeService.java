@@ -1,5 +1,7 @@
 package com.api.filmeteca.service;
 
+import com.api.filmeteca.enums.ParamApiEnum;
+import com.api.filmeteca.enums.LinkEnum;
 import com.api.filmeteca.model.Filme;
 import com.api.filmeteca.util.Filmoteca;
 
@@ -8,12 +10,6 @@ import org.springframework.web.client.RestTemplate;
 
 @Service
 public class FilmeService {
-
-    private static String KEY_API = "api_key=d7251e004d1f3faea8a9b0f9405646b6";
-    private static String LANGUAGE_PT_BR = "language=pt-BR";
-
-    private static String URL_BASE_FILME = "https://api.themoviedb.org/3/movie/";
-    private static String URL_BASE_POPULARES = "https://api.themoviedb.org/3/movie/popular?api_key=d7251e004d1f3faea8a9b0f9405646b6&language=pt-BR&page=";
 
     private RestTemplate restTemplate;
 
@@ -42,11 +38,14 @@ public class FilmeService {
 
     private String montaUrlFilme(String idFilme) {
 
-        return URL_BASE_FILME + idFilme + "?" + KEY_API + "&" + LANGUAGE_PT_BR;
+        return LinkEnum.URL_BASE_FILME.getUrl() + idFilme + "?" + ParamApiEnum.KEY_API.getConfig() + "&"
+                + ParamApiEnum.LANGUAGE_PT_BR.getConfig();
     }
 
     private String montarUrlFilmesPopulares(int indexPaginacao) {
 
-        return URL_BASE_POPULARES + indexPaginacao;
+        return LinkEnum.URL_BASE_POPULARES.getUrl() + "?" + ParamApiEnum.KEY_API.getConfig() + "&"
+                + ParamApiEnum.LANGUAGE_PT_BR.getConfig()
+                + "&page=" + indexPaginacao;
     }
 }

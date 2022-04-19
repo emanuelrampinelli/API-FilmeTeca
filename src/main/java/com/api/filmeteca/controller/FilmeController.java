@@ -17,12 +17,6 @@ public class FilmeController {
     @Autowired
     private FilmeService filmeService;
 
-    @GetMapping("/muito_veloz_sapoha")
-    public Filme teste() {
-        String idFilme = "385128-f9";
-        return filmeService.getFilme(idFilme);
-    }
-
     @GetMapping("/populares")
     public Filmoteca getFilmesPopulares() {
         return filmeService.getFilmesPopulares(1);
