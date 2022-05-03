@@ -5,20 +5,31 @@ import java.util.List;
 public class Filme {
 
     private int id;
-    private List<Genero> genres;
-    private List<Integer> genre_ids;
-    private String title;
-    private String poster_path;
-    private String backdrop_path;
+    private String title; // Nome
+    private List<Genero> genres; // Generos
+    private String release_date; // Data de Lancamento
+    private String vote_average; // Nota
+    private String vote_count; // Quantidade votos
     private String overview;
-    private String vote_average;
-    private String vote_count;
     private String tagline;
     private String status;
-    private String release_date;
+    private List<Comentario> comentarios;
+
+    private String poster_path; // Link imagem - POSTER
+    private String backdrop_path; // Link imagem - BACKDROP
+
+    private List<Integer> genre_ids; // Auxilixar para coletar dados da API mae;
 
     public int getId() {
         return id;
+    }
+
+    public List<Comentario> getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(List<Comentario> comentarios) {
+        this.comentarios = comentarios;
     }
 
     public List<Integer> getGenre_ids() {
