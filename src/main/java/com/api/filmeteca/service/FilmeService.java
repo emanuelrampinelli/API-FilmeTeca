@@ -19,6 +19,7 @@ public class FilmeService {
     private Filmoteca filmoteca;
 
     private ElencoService elencoService;
+    private ComentarioService comentarioService;
 
     public FilmeService() {
         this.restTemplate = new RestTemplate();
@@ -26,6 +27,7 @@ public class FilmeService {
         this.filme = new Filme();
         this.elencoService = new ElencoService();
         this.filmoteca = new Filmoteca();
+        this.comentarioService = new ComentarioService();
     }
 
     public Filme getFilme(String id) {
@@ -36,6 +38,7 @@ public class FilmeService {
         this.filme.setElencar(elenco.getCast());
         this.filme.setEquipe(elenco.getCrew());
         this.filme.setDiretor(elenco.getDiretor());
+        this.filme.setComentarios(comentarioService.carregaComentario());
 
         return this.filme;
     }
