@@ -15,7 +15,7 @@ public class GeneroController {
     @Autowired
     private GeneroService generoService;
 
-    @GetMapping("/list")
+    @GetMapping("")
     public Generos getListGeneros() {
 
         return generoService.getListGeneros();

@@ -4,7 +4,8 @@ public enum LinkEnum {
 
     URL_LIST_GENEROS("https://api.themoviedb.org/3/genre/movie/list"),
     URL_BASE_FILME("https://api.themoviedb.org/3/movie/"),
-    URL_BASE_POPULARES("https://api.themoviedb.org/3/movie/popular");
+    URL_BASE_POPULARES("https://api.themoviedb.org/3/movie/popular"),
+    URL_DIRETOR("https://api.themoviedb.org/3/movie/");
 
     private String url;
 

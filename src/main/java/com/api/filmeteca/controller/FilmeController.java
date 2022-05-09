@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("filmes")
+@RequestMapping("filme")
 public class FilmeController {
 
     @Autowired
@@ -22,9 +22,17 @@ public class FilmeController {
         return filmeService.getFilmesPopulares(1);
     }
 
-    @GetMapping("/procurar")
-    public Filme getFilme(@RequestParam String id_filme) {
-        return filmeService.getFilme(id_filme);
+    @GetMapping("")
+    public Filme getFilme(@RequestParam String id) {
+        return filmeService.getFilme(id);
+    }
+
+    @GetMapping("diretor")
+    public Filme getDiretorFilme(@RequestParam String id) {
+        // https://api.themoviedb.org/3/movie/414906/credits?api_key=d7251e004d1f3faea8a9b0f9405646b6&language=pt-BR
+        // "job": "Director"
+        // Return name
+        return null;
     }
 
 }

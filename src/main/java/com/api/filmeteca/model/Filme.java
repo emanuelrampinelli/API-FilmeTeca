@@ -8,11 +8,17 @@ public class Filme {
     private String title; // Nome
     private List<Genero> genres; // Generos
     private String release_date; // Data de Lancamento
-    private String vote_average; // Nota
+    private String vote_average; // Media de votos - API MAE
+    private String vote_average_local;// Media de votos - Local
     private String vote_count; // Quantidade votos
     private String overview;
     private String tagline;
     private String status;
+
+    private Participante diretor;
+    private List<Participante> elencar;
+    private List<Participante> equipe;
+
     private List<Comentario> comentarios;
 
     private String poster_path; // Link imagem - POSTER
@@ -22,6 +28,38 @@ public class Filme {
 
     public int getId() {
         return id;
+    }
+
+    public Participante getDiretor() {
+        return diretor;
+    }
+
+    public void setDiretor(Participante diretor) {
+        this.diretor = diretor;
+    }
+
+    public List<Participante> getEquipe() {
+        return equipe;
+    }
+
+    public void setEquipe(List<Participante> equipe) {
+        this.equipe = equipe;
+    }
+
+    public List<Participante> getElencar() {
+        return elencar;
+    }
+
+    public void setElencar(List<Participante> elencar) {
+        this.elencar = elencar;
+    }
+
+    public String getVote_average_local() {
+        return vote_average_local;
+    }
+
+    public void setVote_average_local(String vote_average_local) {
+        this.vote_average_local = vote_average_local;
     }
 
     public List<Comentario> getComentarios() {
