@@ -1,18 +1,19 @@
 package com.api.filmeteca.util;
 
 import java.util.List;
-import com.api.filmeteca.model.Filme;
+
+import com.api.filmeteca.dto.FilmeDto;
 
 //Coletivo de Filmes
 public class Filmoteca {
 
-    private List<Filme> results;
+    private List<FilmeDto> results;
 
-    public List<Filme> getResults() {
+    public List<FilmeDto> getResults() {
         return results;
     }
 
-    public void setResults(List<Filme> results) {
+    public void setResults(List<FilmeDto> results) {
         this.results = results;
     }
 }

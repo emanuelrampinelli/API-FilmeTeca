@@ -1,33 +1,22 @@
 package com.api.filmeteca.service;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import com.api.filmeteca.model.Comentario;
-import com.api.filmeteca.model.Usuario;
+
+import com.api.filmeteca.repository.ComentarioRepository;
 
 public class ComentarioService {
 
-    public List<Comentario> carregaComentario() {
+    private ComentarioRepository comentarioRepository;
 
-        List<Comentario> comentarios = new ArrayList<>();
+    public ComentarioService() {
+        this.comentarioRepository = new ComentarioRepository();
+    }
 
-        for (int i = 0; i < 5; i++) {
+    public List<Comentario> carregaComentario(int idFilme) {
 
-            Usuario user = new Usuario();
-            Comentario comentario = new Comentario();
-
-            comentario.setData(new Date());
-            comentario.setTexto("Filme Ruim Rapaz, era melhor ter ido ver o filme do Pelé");
-
-            user.setNome("user" + i);
-            comentario.setUser(user);
-
-            comentarios.add(comentario);
-        }
-
-        return comentarios;
+        return comentarioRepository.findComentarios(idFilme);
     }
 
 }

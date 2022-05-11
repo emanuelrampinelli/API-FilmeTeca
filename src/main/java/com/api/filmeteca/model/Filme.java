@@ -2,88 +2,125 @@ package com.api.filmeteca.model;
 
 import java.util.List;
 
+import com.api.filmeteca.dto.FilmeDto;
+
 public class Filme {
 
     private int id;
-    private String title; // Nome
-    private List<Genero> genres; // Generos
-    private String release_date; // Data de Lancamento
-    private String vote_average; // Media de votos - API MAE
-    private String vote_average_local;// Media de votos - Local
-    private String vote_count; // Quantidade votos
-    private String overview;
-    private String tagline;
+    private String nome; // Nome
+    private List<Genero> generos; // Generos
+    private String dataLancamento; // Data de Lancamento
+    private String mediaVotos; // Media de votos - API MAE
+    private String mediaVotosLocal;// Media de votos - Local
+    private String quantVotos; // Quantidade votos
+    private String descricao;
+    private String slogan;
     private String status;
 
     private Participante diretor;
-    private List<Participante> elencar;
-    private List<Participante> equipe;
+    private List<Participante> elenco;
+    private List<Participante> equipeProducao;
 
     private List<Comentario> comentarios;
 
-    private String poster_path; // Link imagem - POSTER
-    private String backdrop_path; // Link imagem - BACKDROP
+    private String poster; // Link imagem - POSTER
+    private String backdrop; // Link imagem - BACKDROP
 
     private List<Integer> genre_ids; // Auxilixar para coletar dados da API mae;
+
+    public Filme(FilmeDto filmeDto) {
+
+        this.id = filmeDto.getId();
+        this.nome = filmeDto.getTitle();
+        this.generos = filmeDto.getGenres();
+        this.dataLancamento = filmeDto.getRelease_date();
+        this.mediaVotos = filmeDto.getVote_average();
+        this.mediaVotosLocal = filmeDto.getVote_average_local();
+        this.quantVotos = filmeDto.getVote_count();
+        this.descricao = filmeDto.getOverview();
+        this.status = filmeDto.getStatus();
+
+        this.diretor = filmeDto.getDiretor();
+        this.elenco = filmeDto.getElencar();
+        this.equipeProducao = filmeDto.getEquipe();
+
+        this.comentarios = filmeDto.getComentarios();
+
+        this.poster = filmeDto.getPoster_path();
+        this.backdrop = filmeDto.getBackdrop_path();
+
+    }
 
     public int getId() {
         return id;
     }
 
-    public Participante getDiretor() {
-        return diretor;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setDiretor(Participante diretor) {
-        this.diretor = diretor;
+    public String getNome() {
+        return nome;
     }
 
-    public List<Participante> getEquipe() {
-        return equipe;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public void setEquipe(List<Participante> equipe) {
-        this.equipe = equipe;
+    public List<Genero> getGeneros() {
+        return generos;
     }
 
-    public List<Participante> getElencar() {
-        return elencar;
+    public void setGeneros(List<Genero> generos) {
+        this.generos = generos;
     }
 
-    public void setElencar(List<Participante> elencar) {
-        this.elencar = elencar;
+    public String getDataLancamento() {
+        return dataLancamento;
     }
 
-    public String getVote_average_local() {
-        return vote_average_local;
+    public void setDataLancamento(String dataLancamento) {
+        this.dataLancamento = dataLancamento;
     }
 
-    public void setVote_average_local(String vote_average_local) {
-        this.vote_average_local = vote_average_local;
+    public String getMediaVotos() {
+        return mediaVotos;
     }
 
-    public List<Comentario> getComentarios() {
-        return comentarios;
+    public void setMediaVotos(String mediaVotos) {
+        this.mediaVotos = mediaVotos;
     }
 
-    public void setComentarios(List<Comentario> comentarios) {
-        this.comentarios = comentarios;
+    public String getMediaVotosLocal() {
+        return mediaVotosLocal;
     }
 
-    public List<Integer> getGenre_ids() {
-        return genre_ids;
+    public void setMediaVotosLocal(String mediaVotosLocal) {
+        this.mediaVotosLocal = mediaVotosLocal;
     }
 
-    public void setGenre_ids(List<Integer> genre_ids) {
-        this.genre_ids = genre_ids;
+    public String getQuantVotos() {
+        return quantVotos;
     }
 
-    public String getRelease_date() {
-        return release_date;
+    public void setQuantVotos(String quantVotos) {
+        this.quantVotos = quantVotos;
     }
 
-    public void setRelease_date(String release_date) {
-        this.release_date = release_date;
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public String getSlogan() {
+        return slogan;
+    }
+
+    public void setSlogan(String slogan) {
+        this.slogan = slogan;
     }
 
     public String getStatus() {
@@ -94,72 +131,60 @@ public class Filme {
         this.status = status;
     }
 
-    public List<Genero> getGenres() {
-        return genres;
+    public Participante getDiretor() {
+        return diretor;
     }
 
-    public void setGenres(List<Genero> genres) {
-        this.genres = genres;
+    public void setDiretor(Participante diretor) {
+        this.diretor = diretor;
     }
 
-    public String getTitle() {
-        return title;
+    public List<Participante> getElenco() {
+        return elenco;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setElenco(List<Participante> elenco) {
+        this.elenco = elenco;
     }
 
-    public String getTagline() {
-        return tagline;
+    public List<Participante> getEquipeProducao() {
+        return equipeProducao;
     }
 
-    public void setTagline(String tagline) {
-        this.tagline = tagline;
+    public void setEquipeProducao(List<Participante> equipeProducao) {
+        this.equipeProducao = equipeProducao;
     }
 
-    public String getVote_count() {
-        return vote_count;
+    public List<Comentario> getComentarios() {
+        return comentarios;
     }
 
-    public void setVote_count(String vote_count) {
-        this.vote_count = vote_count;
+    public void setComentarios(List<Comentario> comentarios) {
+        this.comentarios = comentarios;
     }
 
-    public String getVote_average() {
-        return vote_average;
+    public String getPoster() {
+        return poster;
     }
 
-    public void setVote_average(String vote_average) {
-        this.vote_average = vote_average;
+    public void setPoster(String poster) {
+        this.poster = poster;
     }
 
-    public String getOverview() {
-        return overview;
+    public String getBackdrop() {
+        return backdrop;
     }
 
-    public void setOverview(String overview) {
-        this.overview = overview;
+    public void setBackdrop(String backdrop) {
+        this.backdrop = backdrop;
     }
 
-    public String getBackdrop_path() {
-        return backdrop_path;
+    public List<Integer> getGenre_ids() {
+        return genre_ids;
     }
 
-    public void setBackdrop_path(String backdrop_path) {
-        this.backdrop_path = backdrop_path;
-    }
-
-    public String getPoster_path() {
-        return poster_path;
-    }
-
-    public void setPoster_path(String poster_path) {
-        this.poster_path = poster_path;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public void setGenre_ids(List<Integer> genre_ids) {
+        this.genre_ids = genre_ids;
     }
 
 }

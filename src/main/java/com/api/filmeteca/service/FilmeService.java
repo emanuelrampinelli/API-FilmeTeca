@@ -1,6 +1,7 @@
 package com.api.filmeteca.service;
 
 import com.api.filmeteca.enums.ParamApiEnum;
+import com.api.filmeteca.dto.FilmeDto;
 import com.api.filmeteca.enums.LinkEnum;
 import com.api.filmeteca.model.Elenco;
 import com.api.filmeteca.model.Filme;
@@ -14,7 +15,7 @@ public class FilmeService {
 
     private RestTemplate restTemplate;
 
-    private Filme filme;
+    private FilmeDto filmeDto;
     private Elenco elenco;
     private Filmoteca filmoteca;
 
@@ -24,7 +25,7 @@ public class FilmeService {
     public FilmeService() {
         this.restTemplate = new RestTemplate();
         this.elenco = new Elenco();
-        this.filme = new Filme();
+        this.filmeDto = new FilmeDto();
         this.elencoService = new ElencoService();
         this.filmoteca = new Filmoteca();
         this.comentarioService = new ComentarioService();
@@ -32,15 +33,15 @@ public class FilmeService {
 
     public Filme getFilme(String id) {
 
-        this.filme = this.restTemplate.getForObject(montaUrlFilme(id), Filme.class);
+        this.filmeDto = this.restTemplate.getForObject(montaUrlFilme(id), FilmeDto.class);
         this.elenco = elencoService.getElenco(id);
 
-        this.filme.setElencar(elenco.getCast());
-        this.filme.setEquipe(elenco.getCrew());
-        this.filme.setDiretor(elenco.getDiretor());
-        this.filme.setComentarios(comentarioService.carregaComentario());
+        this.filmeDto.setElencar(elenco.getCast());
+        this.filmeDto.setEquipe(elenco.getCrew());
+        this.filmeDto.setDiretor(elenco.getDiretor());
+        this.filmeDto.setComentarios(comentarioService.carregaComentario(filmeDto.getId()));
 
-        return this.filme;
+        return new Filme(this.filmeDto);
     }
 
     public Filmoteca getFilmesPopulares(int indexPaginacao) {
