@@ -5,29 +5,9 @@ import java.util.List;
 public class Elenco {
 
     private int id;
-    private List<Participante> cast; // elencar
-    private List<Participante> crew; // Equipe
+    private List<Participante> artistas; // artistas
+    private List<Participante> equipe_producao; // Equipe_producao
     private Participante diretor;
-
-    public List<Participante> getCast() {
-        return cast;
-    }
-
-    public Participante getDiretor() {
-        return diretor;
-    }
-
-    public void setDiretor(Participante diretor) {
-        this.diretor = diretor;
-    }
-
-    public List<Participante> getCrew() {
-        return crew;
-    }
-
-    public void setCrew(List<Participante> crew) {
-        this.crew = crew;
-    }
 
     public int getId() {
         return id;
@@ -37,8 +17,28 @@ public class Elenco {
         this.id = id;
     }
 
-    public void setCast(List<Participante> cast) {
-        this.cast = cast;
+    public List<Participante> getArtistas() {
+        return artistas;
+    }
+
+    public void setArtistas(List<Participante> artistas) {
+        this.artistas = artistas;
+    }
+
+    public List<Participante> getEquipe_producao() {
+        return equipe_producao;
+    }
+
+    public void setEquipe_producao(List<Participante> equipe_producao) {
+        this.equipe_producao = equipe_producao;
+    }
+
+    public Participante getDiretor() {
+        return diretor;
+    }
+
+    public void setDiretor(Participante diretor) {
+        this.diretor = diretor;
     }
 
 }

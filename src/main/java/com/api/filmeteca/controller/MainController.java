@@ -12,12 +12,12 @@ public class MainController {
     public String mainController() {
 
         String text = "<h1>" +
-                "GET - <DOMAIN>/filme/populares <br>" +
-                "GET - <DOMAIN>/filme?id={id} <br>" +
+                "GET - <DOMAIN>/filme/populares/{index} <br>" +
+                "GET - <DOMAIN>/filme/{id} <br>" +
+                "GET - <DOMAIN>/filme/search/{texto} <br>" +
                 "GET - <DOMAIN>/genero<br>" +
                 "<h1>";
 
         return text;
     }
-
 }

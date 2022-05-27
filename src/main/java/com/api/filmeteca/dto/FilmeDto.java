@@ -3,8 +3,8 @@ package com.api.filmeteca.dto;
 import java.util.List;
 
 import com.api.filmeteca.model.Comentario;
+import com.api.filmeteca.model.Filme;
 import com.api.filmeteca.model.Genero;
-import com.api.filmeteca.model.Participante;
 
 public class FilmeDto {
 
@@ -17,11 +17,10 @@ public class FilmeDto {
     private String vote_count; // Quantidade votos
     private String overview;
     private String tagline;
+    private String runtime;
     private String status;
 
-    private Participante diretor;
-    private List<Participante> elencar;
-    private List<Participante> equipe;
+    private ElencoDto elencoDto;
 
     private List<Comentario> comentarios;
 
@@ -102,6 +101,14 @@ public class FilmeDto {
         this.tagline = tagline;
     }
 
+    public String getRuntime() {
+        return runtime;
+    }
+
+    public void setRuntime(String runtime) {
+        this.runtime = runtime;
+    }
+
     public String getStatus() {
         return status;
     }
@@ -110,28 +117,12 @@ public class FilmeDto {
         this.status = status;
     }
 
-    public Participante getDiretor() {
-        return diretor;
+    public ElencoDto getElencoDto() {
+        return elencoDto;
     }
 
-    public void setDiretor(Participante diretor) {
-        this.diretor = diretor;
-    }
-
-    public List<Participante> getElencar() {
-        return elencar;
-    }
-
-    public void setElencar(List<Participante> elencar) {
-        this.elencar = elencar;
-    }
-
-    public List<Participante> getEquipe() {
-        return equipe;
-    }
-
-    public void setEquipe(List<Participante> equipe) {
-        this.equipe = equipe;
+    public void setElencoDto(ElencoDto elencoDto) {
+        this.elencoDto = elencoDto;
     }
 
     public List<Comentario> getComentarios() {
@@ -166,4 +157,27 @@ public class FilmeDto {
         this.genre_ids = genre_ids;
     }
 
+    public Filme filmeDtoToFilme() {
+
+        Filme filme = new Filme();
+
+        filme.setId(this.id);
+        filme.setNome(this.title);
+        filme.setGeneros(this.genres);
+        filme.setDataLancamento(this.release_date);
+        filme.setMediaVotos(this.vote_average);
+        filme.setMediaVotosLocal(this.vote_average_local);
+        filme.setQuantVotos(this.vote_count);
+        filme.setDescricao(this.overview);
+        filme.setStatus(this.status);
+
+        filme.setElenco(this.elencoDto.elencoDtoToElenco());
+
+        filme.setComentarios(this.comentarios);
+
+        filme.setPoster(this.poster_path);
+        filme.setBackdrop(this.backdrop_path);
+
+        return filme;
+    }
 }

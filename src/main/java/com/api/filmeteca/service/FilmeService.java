@@ -1,11 +1,10 @@
 package com.api.filmeteca.service;
 
 import com.api.filmeteca.enums.ParamApiEnum;
+import com.api.filmeteca.dto.ElencoDto;
 import com.api.filmeteca.dto.FilmeDto;
+import com.api.filmeteca.dto.FilmotecaDto;
 import com.api.filmeteca.enums.LinkEnum;
-import com.api.filmeteca.model.Elenco;
-import com.api.filmeteca.model.Filme;
-import com.api.filmeteca.util.Filmoteca;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -13,42 +12,61 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class FilmeService {
 
+    // @Autowired
+    // private IComentarioRepository comentarioService;
     private RestTemplate restTemplate;
 
     private FilmeDto filmeDto;
-    private Elenco elenco;
-    private Filmoteca filmoteca;
+    private ElencoDto elencoDto;
+    private FilmotecaDto filmoteca;
 
     private ElencoService elencoService;
-    private ComentarioService comentarioService;
 
     public FilmeService() {
         this.restTemplate = new RestTemplate();
-        this.elenco = new Elenco();
+        this.elencoDto = new ElencoDto();
         this.filmeDto = new FilmeDto();
         this.elencoService = new ElencoService();
-        this.filmoteca = new Filmoteca();
-        this.comentarioService = new ComentarioService();
+        this.filmoteca = new FilmotecaDto();
     }
 
-    public Filme getFilme(String id) {
+    public FilmeDto getFilme(String id) {
 
+        // Busca o Filme
         this.filmeDto = this.restTemplate.getForObject(montaUrlFilme(id), FilmeDto.class);
-        this.elenco = elencoService.getElenco(id);
 
-        this.filmeDto.setElencar(elenco.getCast());
-        this.filmeDto.setEquipe(elenco.getCrew());
-        this.filmeDto.setDiretor(elenco.getDiretor());
-        this.filmeDto.setComentarios(comentarioService.carregaComentario(filmeDto.getId()));
+        // Busca o Elenco do Filme
+        this.elencoDto = elencoService.getElenco(id);
 
-        return new Filme(this.filmeDto);
+        // SET ElencoDto no FilmeDto
+        this.filmeDto.setElencoDto(elencoDto);
+
+        // SET Comentario no Filme
+        // this.filmeDto.setComentarios(comentarioService.carregaComentario(filmeDto.getId()));
+        this.filmeDto.setComentarios(null);
+
+        return this.filmeDto;
     }
 
-    public Filmoteca getFilmesPopulares(int indexPaginacao) {
+    public FilmotecaDto getFilmesPopulares(String indexPaginacao) {
 
-        this.filmoteca = this.restTemplate.getForObject(montarUrlFilmesPopulares(indexPaginacao), Filmoteca.class);
+        int index;
+        try {
+            index = Integer.parseInt(indexPaginacao);
+        } catch (Exception e) {
+            index = 1;
+            e.printStackTrace();
+        }
+
+        this.filmoteca = this.restTemplate.getForObject(montarUrlFilmesPopulares(index), FilmotecaDto.class);
 
         return filmoteca;
+    }
+
+    public FilmotecaDto procurarFilmes(String texto) {
+
+        this.filmoteca = this.restTemplate.getForObject(montarUrlProcurarFilmes(texto), FilmotecaDto.class);
+        return this.filmoteca;
     }
 
     private String montaUrlFilme(String id) {
@@ -63,4 +81,12 @@ public class FilmeService {
                 + ParamApiEnum.LANGUAGE_PT_BR.getConfig()
                 + "&page=" + indexPaginacao;
     }
+
+    private String montarUrlProcurarFilmes(String texto) {
+
+        return LinkEnum.URL_SEARCH.getUrl() + "?" + ParamApiEnum.KEY_API.getConfig() + "&"
+                + ParamApiEnum.LANGUAGE_PT_BR.getConfig()
+                + "&query=" + texto;
+    }
+
 }

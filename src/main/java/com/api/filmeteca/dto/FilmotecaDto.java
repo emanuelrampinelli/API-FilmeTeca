@@ -1,11 +1,9 @@
-package com.api.filmeteca.util;
+package com.api.filmeteca.dto;
 
 import java.util.List;
 
-import com.api.filmeteca.dto.FilmeDto;
-
 //Coletivo de Filmes
-public class Filmoteca {
+public class FilmotecaDto {
 
     private List<FilmeDto> results;
 

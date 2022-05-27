@@ -1,39 +1,38 @@
 package com.api.filmeteca.service;
 
+import com.api.filmeteca.dto.ElencoDto;
+import com.api.filmeteca.dto.ParticipanteDto;
 import com.api.filmeteca.enums.LinkEnum;
 import com.api.filmeteca.enums.ParamApiEnum;
-import com.api.filmeteca.model.Elenco;
-import com.api.filmeteca.model.Participante;
 
 import org.springframework.web.client.RestTemplate;
 
 public class ElencoService {
 
     private RestTemplate restTemplate;
-    private Elenco elenco;
+    private ElencoDto eleconDto;
 
     public ElencoService() {
         this.restTemplate = new RestTemplate();
-        this.elenco = new Elenco();
+        this.eleconDto = new ElencoDto();
     }
 
-    public Elenco getElenco(String id) {
+    public ElencoDto getElenco(String id) {
 
-        this.elenco = this.restTemplate.getForObject(montaUrlDiretor(id), Elenco.class);
-        this.elenco.setDiretor(findDiretor());
-        return this.elenco;
+        this.eleconDto = this.restTemplate.getForObject(montaUrlDiretor(id), ElencoDto.class);
+        this.eleconDto.setDiretor(findDiretor());
+        return this.eleconDto;
     }
 
     private String montaUrlDiretor(String id) {
 
-        String a = LinkEnum.URL_DIRETOR.getUrl() + id + "/credits?" + ParamApiEnum.KEY_API.getConfig() + "&"
+        return LinkEnum.URL_DIRETOR.getUrl() + id + "/credits?" + ParamApiEnum.KEY_API.getConfig() + "&"
                 + ParamApiEnum.LANGUAGE_PT_BR.getConfig();
-        return a;
     }
 
-    private Participante findDiretor() {
+    private ParticipanteDto findDiretor() {
 
-        for (Participante participante : elenco.getCrew()) {
+        for (ParticipanteDto participante : eleconDto.getCrew()) {
             if (participante.getJob().equals("Director")) {
                 return participante;
             }

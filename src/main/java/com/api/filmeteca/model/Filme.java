@@ -2,8 +2,6 @@ package com.api.filmeteca.model;
 
 import java.util.List;
 
-import com.api.filmeteca.dto.FilmeDto;
-
 public class Filme {
 
     private int id;
@@ -14,12 +12,11 @@ public class Filme {
     private String mediaVotosLocal;// Media de votos - Local
     private String quantVotos; // Quantidade votos
     private String descricao;
+    private String duracao;
     private String slogan;
     private String status;
 
-    private Participante diretor;
-    private List<Participante> elenco;
-    private List<Participante> equipeProducao;
+    private Elenco elenco;
 
     private List<Comentario> comentarios;
 
@@ -28,27 +25,20 @@ public class Filme {
 
     private List<Integer> genre_ids; // Auxilixar para coletar dados da API mae;
 
-    public Filme(FilmeDto filmeDto) {
+    public String getDuracao() {
+        return duracao;
+    }
 
-        this.id = filmeDto.getId();
-        this.nome = filmeDto.getTitle();
-        this.generos = filmeDto.getGenres();
-        this.dataLancamento = filmeDto.getRelease_date();
-        this.mediaVotos = filmeDto.getVote_average();
-        this.mediaVotosLocal = filmeDto.getVote_average_local();
-        this.quantVotos = filmeDto.getVote_count();
-        this.descricao = filmeDto.getOverview();
-        this.status = filmeDto.getStatus();
+    public Elenco getElenco() {
+        return elenco;
+    }
 
-        this.diretor = filmeDto.getDiretor();
-        this.elenco = filmeDto.getElencar();
-        this.equipeProducao = filmeDto.getEquipe();
+    public void setElenco(Elenco elenco) {
+        this.elenco = elenco;
+    }
 
-        this.comentarios = filmeDto.getComentarios();
-
-        this.poster = filmeDto.getPoster_path();
-        this.backdrop = filmeDto.getBackdrop_path();
-
+    public void setDuracao(String duracao) {
+        this.duracao = duracao;
     }
 
     public int getId() {
@@ -129,30 +119,6 @@ public class Filme {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public Participante getDiretor() {
-        return diretor;
-    }
-
-    public void setDiretor(Participante diretor) {
-        this.diretor = diretor;
-    }
-
-    public List<Participante> getElenco() {
-        return elenco;
-    }
-
-    public void setElenco(List<Participante> elenco) {
-        this.elenco = elenco;
-    }
-
-    public List<Participante> getEquipeProducao() {
-        return equipeProducao;
-    }
-
-    public void setEquipeProducao(List<Participante> equipeProducao) {
-        this.equipeProducao = equipeProducao;
     }
 
     public List<Comentario> getComentarios() {

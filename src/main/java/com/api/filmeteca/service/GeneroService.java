@@ -1,8 +1,8 @@
 package com.api.filmeteca.service;
 
+import com.api.filmeteca.dto.GenerosDto;
 import com.api.filmeteca.enums.LinkEnum;
 import com.api.filmeteca.enums.ParamApiEnum;
-import com.api.filmeteca.util.Generos;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -12,17 +12,17 @@ public class GeneroService {
 
     private RestTemplate restTemplate;
 
-    private Generos genres;
+    private GenerosDto genres;
 
     public GeneroService() {
 
         this.restTemplate = new RestTemplate();
-        this.genres = new Generos();
+        this.genres = new GenerosDto();
     }
 
-    public Generos getListGeneros() {
+    public GenerosDto getListGeneros() {
 
-        this.genres = this.restTemplate.getForObject(montaUrlListGeneros(), Generos.class);
+        this.genres = this.restTemplate.getForObject(montaUrlListGeneros(), GenerosDto.class);
         return this.genres;
     }
 

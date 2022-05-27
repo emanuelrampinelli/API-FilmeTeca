@@ -1,7 +1,7 @@
 package com.api.filmeteca.controller;
 
+import com.api.filmeteca.dto.GenerosDto;
 import com.api.filmeteca.service.GeneroService;
-import com.api.filmeteca.util.Generos;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +16,7 @@ public class GeneroController {
     private GeneroService generoService;
 
     @GetMapping("")
-    public Generos getListGeneros() {
+    public GenerosDto getListGeneros() {
 
         return generoService.getListGeneros();
     }

@@ -1,14 +1,39 @@
 package com.api.filmeteca.model;
 
-import java.util.Date;
+import java.io.Serializable;
+import java.util.UUID;
 
-public class Comentario {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+import org.joda.time.DateTime;
+
+@Entity
+@Table(name = "TB_COMENTARIO")
+public class Comentario implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
+
+    @Column(nullable = false, unique = false, length = 200)
     private String texto;
-    private Date data;
 
+    private DateTime data;
     private Usuario user;
     private Filme filme;
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
 
     public String getTexto() {
         return texto;
@@ -18,11 +43,11 @@ public class Comentario {
         this.texto = texto;
     }
 
-    public Date getData() {
+    public DateTime getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(DateTime data) {
         this.data = data;
     }
 
