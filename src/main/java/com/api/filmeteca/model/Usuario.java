@@ -1,22 +1,38 @@
 package com.api.filmeteca.model;
 
-import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
+@Entity
+@Table(name = "USUARIO")
 public class Usuario {
 
-    private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @NotNull
+    @Column(unique = false, length = 200)
     private String nome;
+
+    @NotNull
+    @Column(unique = false, length = 200)
     private String email;
 
-    private List<Comentario> comentarios;
-    private List<Interesse> interesses;
-    private List<Favorito> favoritos;
+    @NotNull
+    @Column(unique = false, length = 200)
+    private String senha;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -36,28 +52,16 @@ public class Usuario {
         this.email = email;
     }
 
-    public List<Comentario> getComentarios() {
-        return comentarios;
+    public String getSenha() {
+        return senha;
     }
 
-    public void setComentarios(List<Comentario> comentarios) {
-        this.comentarios = comentarios;
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
-    public List<Interesse> getInteresses() {
-        return interesses;
-    }
-
-    public void setInteresses(List<Interesse> interesses) {
-        this.interesses = interesses;
-    }
-
-    public List<Favorito> getFavoritos() {
-        return favoritos;
-    }
-
-    public void setFavoritos(List<Favorito> favoritos) {
-        this.favoritos = favoritos;
-    }
+    // private List<Comentario> comentarios;
+    // private List<Interesse> interesses;
+    // private List<Favorito> favoritos;
 
 }

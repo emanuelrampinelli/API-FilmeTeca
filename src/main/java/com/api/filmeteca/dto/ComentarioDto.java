@@ -4,12 +4,12 @@ public class ComentarioDto {
 
     private String texto;
 
-    public String getText() {
+    public String getTexto() {
         return texto;
     }
 
-    public void setText(String text) {
-        this.texto = text;
+    public void setTexto(String texto) {
+        this.texto = texto;
     }
 
 }
