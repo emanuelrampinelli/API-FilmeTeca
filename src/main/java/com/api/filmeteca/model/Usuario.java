@@ -21,7 +21,7 @@ public class Usuario {
     private String nome;
 
     @NotNull
-    @Column(unique = false, length = 200)
+    @Column(unique = true, length = 200)
     private String email;
 
     @NotNull
