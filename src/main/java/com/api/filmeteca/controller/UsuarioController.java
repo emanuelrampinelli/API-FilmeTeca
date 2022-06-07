@@ -50,7 +50,7 @@ public class UsuarioController {
 
     }
 
-    @GetMapping("/login")
+    @PostMapping("/login2")
     public ResponseEntity<Boolean> validarSenha(@RequestParam String login, @RequestParam String senha) {
 
         Optional<Usuario> optUsuario = usuarioRepository.findByEmail(login);
@@ -61,6 +61,24 @@ public class UsuarioController {
 
         Usuario usuario = optUsuario.get();
         boolean isValid = encoder.matches(senha, usuario.getSenha());
+
+        HttpStatus status = isValid ? HttpStatus.OK : HttpStatus.UNAUTHORIZED;
+
+        return ResponseEntity.status(status).body(isValid);
+
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<Boolean> validarSenha2(@RequestBody UsuarioDto usuarioDto) {
+
+        Optional<Usuario> optUsuario = usuarioRepository.findByEmail(usuarioDto.getEmail());
+
+        if (optUsuario.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(false);
+        }
+
+        Usuario usuario = optUsuario.get();
+        boolean isValid = encoder.matches(usuarioDto.getSenha(), usuario.getSenha());
 
         HttpStatus status = isValid ? HttpStatus.OK : HttpStatus.UNAUTHORIZED;
 
