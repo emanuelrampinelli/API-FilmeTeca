@@ -1,18 +1,29 @@
 package com.api.filmeteca.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.util.UUID;
+
 public class UsuarioDto {
 
-    private Long id;
-
+    private UUID id;
     private String nome;
+
+    @Email
+    @NotNull
     private String email;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @NotNull
     private String senha;
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

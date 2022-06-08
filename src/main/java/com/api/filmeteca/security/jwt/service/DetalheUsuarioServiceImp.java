@@ -1,14 +1,14 @@
-package com.api.filmeteca.service.impl;
+package com.api.filmeteca.security.jwt.service;
 
 import java.util.Optional;
 
+import com.api.filmeteca.security.jwt.data.DetalheUsuarioData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
-import com.api.filmeteca.data.DetalheUsuarioData;
 import com.api.filmeteca.model.Usuario;
 import com.api.filmeteca.repository.UsuarioRepository;
 

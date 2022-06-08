@@ -1,6 +1,5 @@
 package com.api.filmeteca.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import com.api.filmeteca.dto.UsuarioDto;
@@ -17,8 +16,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.Valid;
+
 
 @RestController
 @RequestMapping("/auth")
@@ -34,10 +35,25 @@ public class UsuarioController {
     private PasswordEncoder encoder;
 
     @GetMapping
-    public List<Usuario> findAll() {
+    public ResponseEntity<Object> findUser(@Valid @RequestBody UsuarioDto usuarioDto) {
 
-        return usuariosService.findAll();
+        String email = usuarioDto.getEmail();
+        String senha = usuarioDto.getSenha();
+
+        Optional<Usuario> optUsuario = usuarioRepository.findByEmail(email);
+
+        if (optUsuario.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(false);
+        }
+
+        Usuario usuario = optUsuario.get();
+        boolean isValid = encoder.matches(senha, usuario.getSenha());
+
+        HttpStatus status = isValid ? HttpStatus.OK : HttpStatus.UNAUTHORIZED;
+
+        return ResponseEntity.status(status).body(usuarioRepository.findByEmail(email));
     }
+
 
     @PostMapping
     public ResponseEntity<Object> save(@RequestBody UsuarioDto usuarioDto) {
@@ -50,26 +66,8 @@ public class UsuarioController {
 
     }
 
-    @PostMapping("/login2")
-    public ResponseEntity<Boolean> validarSenha(@RequestParam String login, @RequestParam String senha) {
-
-        Optional<Usuario> optUsuario = usuarioRepository.findByEmail(login);
-
-        if (optUsuario.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(false);
-        }
-
-        Usuario usuario = optUsuario.get();
-        boolean isValid = encoder.matches(senha, usuario.getSenha());
-
-        HttpStatus status = isValid ? HttpStatus.OK : HttpStatus.UNAUTHORIZED;
-
-        return ResponseEntity.status(status).body(isValid);
-
-    }
-
-    @PostMapping("/login")
-    public ResponseEntity<Boolean> validarSenha2(@RequestBody UsuarioDto usuarioDto) {
+    @PostMapping("/isValid")
+    public ResponseEntity<Boolean> testUser(@RequestBody UsuarioDto usuarioDto) {
 
         Optional<Usuario> optUsuario = usuarioRepository.findByEmail(usuarioDto.getEmail());
 

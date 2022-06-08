@@ -1,4 +1,4 @@
-package com.api.filmeteca.data;
+package com.api.filmeteca.security.jwt.data;
 
 import java.util.ArrayList;
 import java.util.Collection;

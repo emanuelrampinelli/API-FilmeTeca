@@ -1,5 +1,7 @@
 package com.api.filmeteca.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import java.util.UUID;
 
 @Entity
 @Table(name = "USUARIO")
@@ -14,7 +17,7 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private UUID id;
 
     @NotNull
     @Column(unique = false, length = 200)
@@ -25,14 +28,15 @@ public class Usuario {
     private String email;
 
     @NotNull
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)//Nao retorna nas info user;
     @Column(unique = false, length = 200)
     private String senha;
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

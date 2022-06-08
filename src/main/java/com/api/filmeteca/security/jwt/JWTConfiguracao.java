@@ -1,4 +1,4 @@
-package com.api.filmeteca.security;
+package com.api.filmeteca.security.jwt;
 
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -8,7 +8,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.api.filmeteca.service.impl.DetalheUsuarioServiceImp;
+import com.api.filmeteca.security.jwt.service.DetalheUsuarioServiceImp;
 
 @EnableWebSecurity
 public class JWTConfiguracao extends WebSecurityConfigurerAdapter {
@@ -29,7 +29,7 @@ public class JWTConfiguracao extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeRequests().antMatchers(HttpMethod.POST, "/auth/login").permitAll()
+        http.csrf().disable().authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/auth").permitAll().anyRequest()
                 .authenticated().and().addFilter(new JWTAutenticarFilter(authenticationManager()))
                 .addFilter(new JWTValidarFilter(authenticationManager())).sessionManagement()

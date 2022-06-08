@@ -1,4 +1,4 @@
-package com.api.filmeteca.security;
+package com.api.filmeteca.security.jwt;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.api.filmeteca.data.DetalheUsuarioData;
+import com.api.filmeteca.security.jwt.data.DetalheUsuarioData;
 import com.api.filmeteca.model.Usuario;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
@@ -44,7 +44,7 @@ public class JWTAutenticarFilter extends UsernamePasswordAuthenticationFilter {
 
         } catch (IOException e) {
             // TODO Auto-generated catch block
-            throw new RuntimeException("Falaha ao autenticar usuario", e);
+            throw new RuntimeException("Falha ao autenticar usuario", e);
         }
 
     }

@@ -1,4 +1,4 @@
-package com.api.filmeteca.security;
+package com.api.filmeteca.security.jwt;
 
 import java.io.IOException;
 import java.util.ArrayList;
