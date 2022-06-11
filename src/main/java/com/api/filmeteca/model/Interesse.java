@@ -5,7 +5,6 @@ import java.util.Date;
 public class Interesse {
 
     private Date data;
-
     private Usuario user;
     private Filme filme;
 

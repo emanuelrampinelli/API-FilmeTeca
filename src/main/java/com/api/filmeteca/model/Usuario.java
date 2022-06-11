@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import java.util.Date;
 import java.util.UUID;
 
 @Entity
@@ -31,6 +33,10 @@ public class Usuario {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)//Nao retorna nas info user;
     @Column(unique = false, length = 200)
     private String senha;
+
+    @NotNull
+    @Column
+    private Date dataCadastro;
 
     public UUID getId() {
         return id;
@@ -64,8 +70,12 @@ public class Usuario {
         this.senha = senha;
     }
 
-    // private List<Comentario> comentarios;
-    // private List<Interesse> interesses;
-    // private List<Favorito> favoritos;
+    public Date getDataCadastro() {
+        return dataCadastro;
+    }
+
+    public void setDataCadastro(Date dataCadastro) {
+        this.dataCadastro = dataCadastro;
+    }
 
 }

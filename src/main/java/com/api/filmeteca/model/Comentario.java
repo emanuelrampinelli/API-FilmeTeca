@@ -1,13 +1,10 @@
 package com.api.filmeteca.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "COMENTARIO")
@@ -17,8 +14,35 @@ public class Comentario implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotNull
     @Column(nullable = false, unique = false, length = 200)
     private String texto;
+
+
+    @NotNull
+    @Column
+    private Date dataCadastro;
+
+    @ManyToOne
+    private Usuario usuario;
+
+
+    public Date getDataCadastro() {
+        return dataCadastro;
+    }
+
+    public void setDataCadastro(Date dataCadastro) {
+        this.dataCadastro = dataCadastro;
+    }
+
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 
     public Long getId() {
         return id;

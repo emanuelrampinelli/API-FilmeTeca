@@ -1,10 +1,13 @@
 package com.api.filmeteca.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.joda.time.DateTime;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
+import java.util.Date;
 import java.util.UUID;
 
 public class UsuarioDto {
@@ -18,6 +21,17 @@ public class UsuarioDto {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @NotNull
     private String senha;
+
+    private Date dataCasdastro;
+
+
+    public Date getDataCasdastro() {
+        return dataCasdastro;
+    }
+
+    public void setDataCasdastro(Date dataCasdastro) {
+        this.dataCasdastro = dataCasdastro;
+    }
 
     public UUID getId() {
         return id;
