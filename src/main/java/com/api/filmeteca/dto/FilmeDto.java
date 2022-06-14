@@ -8,7 +8,7 @@ import com.api.filmeteca.model.Genero;
 
 public class FilmeDto {
 
-    private int id;
+    private Long id;
     private String title; // Nome
     private List<Genero> genres; // Generos
     private String release_date; // Data de Lancamento
@@ -29,11 +29,11 @@ public class FilmeDto {
 
     private List<Integer> genre_ids; // Auxilixar para coletar dados da API mae;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -157,27 +157,27 @@ public class FilmeDto {
         this.genre_ids = genre_ids;
     }
 
-    public Filme filmeDtoToFilme() {
-
-        Filme filme = new Filme();
-
-        filme.setId(this.id);
-        filme.setNome(this.title);
-        filme.setGeneros(this.genres);
-        filme.setDataLancamento(this.release_date);
-        filme.setMediaVotos(this.vote_average);
-        filme.setMediaVotosLocal(this.vote_average_local);
-        filme.setQuantVotos(this.vote_count);
-        filme.setDescricao(this.overview);
-        filme.setStatus(this.status);
-
-        filme.setElenco(this.elencoDto.elencoDtoToElenco());
-
-        filme.setComentarios(this.comentarios);
-
-        filme.setPoster(this.poster_path);
-        filme.setBackdrop(this.backdrop_path);
-
-        return filme;
-    }
+//    public Filme filmeDtoToFilme() {
+//
+//        Filme filme = new Filme();
+//
+//        filme.setId(this.id);
+//        filme.setNome(this.title);
+//        filme.setGeneros(this.genres);
+//        filme.setDataLancamento(this.release_date);
+//        filme.setMediaVotos(this.vote_average);
+//        filme.setMediaVotosLocal(this.vote_average_local);
+//        filme.setQuantVotos(this.vote_count);
+//        filme.setDescricao(this.overview);
+//        filme.setStatus(this.status);
+//
+//        filme.setElenco(this.elencoDto.elencoDtoToElenco());
+//
+//        filme.setComentarios(this.comentarios);
+//
+//        filme.setPoster(this.poster_path);
+//        filme.setBackdrop(this.backdrop_path);
+//
+//        return filme;
+//    }
 }

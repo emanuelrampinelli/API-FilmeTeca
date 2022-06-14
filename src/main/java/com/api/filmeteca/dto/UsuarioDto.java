@@ -1,5 +1,9 @@
 package com.api.filmeteca.dto;
 
+import com.api.filmeteca.model.Avaliacao;
+import com.api.filmeteca.model.Comentario;
+import com.api.filmeteca.model.Favorito;
+import com.api.filmeteca.model.Interesse;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.joda.time.DateTime;
 
@@ -8,21 +12,27 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 public class UsuarioDto {
 
     private UUID id;
+
     private String nome;
 
     @Email
-    @NotNull
     private String email;
+
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @NotNull
     private String senha;
 
     private Date dataCasdastro;
+
+    private List<Comentario> comentarios;
+    private List<Interesse> interesses;
+    private List<Favorito> favoritos;
+    private List<Avaliacao> avaliacaos;
 
 
     public Date getDataCasdastro() {

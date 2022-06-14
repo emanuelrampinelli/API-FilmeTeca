@@ -1,27 +1,23 @@
-package com.api.filmeteca.model;
+package com.api.filmeteca.dto;
 
-import javax.persistence.*;
+import com.api.filmeteca.model.Usuario;
+
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.UUID;
 
-@Entity
-@Table(name="avaliacao")
-public class Avaliacao {
+public class AvaliacaoDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column(nullable = false)
+    @NotNull
     private Long idFilme;
 
-    @Column(nullable = false)
+    @NotNull
     private Double valor;
 
-    @Column(nullable = false)
     private Date dataCadastro;
 
-    @ManyToOne
     private Usuario usuario;
 
     public Usuario getUsuario() {

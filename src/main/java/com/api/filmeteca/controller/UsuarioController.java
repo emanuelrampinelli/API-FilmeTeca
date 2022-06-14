@@ -8,7 +8,7 @@ import java.util.Optional;
 import com.api.filmeteca.dto.UsuarioDto;
 import com.api.filmeteca.model.Usuario;
 import com.api.filmeteca.repository.UsuarioRepository;
-import com.api.filmeteca.service.UsuariosService;
+import com.api.filmeteca.service.UsuarioService;
 
 
 import org.springframework.beans.BeanUtils;
@@ -30,7 +30,7 @@ import javax.validation.Valid;
 public class UsuarioController {
 
     @Autowired
-    private UsuariosService usuariosService;
+    private UsuarioService usuarioService;
 
     @Autowired
     private UsuarioRepository usuarioRepository;
@@ -79,7 +79,7 @@ public class UsuarioController {
         Usuario usuario = new Usuario();
         BeanUtils.copyProperties(usuarioDto, usuario);
         usuario.setDataCadastro(dataCadastro);
-        return ResponseEntity.status(HttpStatus.OK).body(usuariosService.save(usuario));
+        return ResponseEntity.status(HttpStatus.OK).body(usuarioService.save(usuario));
 
     }
 

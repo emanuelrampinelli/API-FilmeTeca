@@ -6,14 +6,16 @@ import com.api.filmeteca.dto.FilmeDto;
 import com.api.filmeteca.dto.FilmotecaDto;
 import com.api.filmeteca.enums.LinkEnum;
 
+import com.api.filmeteca.model.Filme;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.Optional;
 
 @Service
 public class FilmeService {
 
-    // @Autowired
-    // private IComentarioRepository comentarioService;
     private RestTemplate restTemplate;
 
     private FilmeDto filmeDto;

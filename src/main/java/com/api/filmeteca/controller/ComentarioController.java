@@ -1,7 +1,6 @@
 package com.api.filmeteca.controller;
 
 import java.util.Date;
-import java.util.List;
 
 import com.api.filmeteca.dto.ComentarioDto;
 import com.api.filmeteca.dto.UsuarioDto;
@@ -9,6 +8,8 @@ import com.api.filmeteca.model.Comentario;
 import com.api.filmeteca.model.Usuario;
 import com.api.filmeteca.service.ComentarioService;
 
+import com.api.filmeteca.service.FilmeService;
+import com.api.filmeteca.service.UsuarioService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,8 +29,18 @@ public class ComentarioController {
     @Autowired
     private ComentarioService comentarioService;
 
+    @Autowired
+    private FilmeService filmeService;
+
+    @Autowired
+    private UsuarioService usuarioService;
+
     @GetMapping
-    public  ResponseEntity<Object> findComentarioPorUsuario(@Valid @RequestBody UsuarioDto usuarioDto){
+    public ResponseEntity<Object> findComentarioPorUsuario(@Valid @RequestBody UsuarioDto usuarioDto){
+
+        if(usuarioDto.getId() == null){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
 
         Usuario usuario = new Usuario();
         BeanUtils.copyProperties(usuarioDto, usuario);
