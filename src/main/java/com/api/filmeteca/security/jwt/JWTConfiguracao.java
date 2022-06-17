@@ -1,6 +1,5 @@
 package com.api.filmeteca.security.jwt;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -10,9 +9,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.api.filmeteca.security.jwt.service.DetalheUsuarioServiceImp;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.reactive.CorsConfigurationSource;
-import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 
 
 @EnableWebSecurity
@@ -34,8 +30,9 @@ public class JWTConfiguracao extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeRequests()
+        http.authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/auth").permitAll()
+                .antMatchers(HttpMethod.POST, "/login").permitAll()
                 .antMatchers(HttpMethod.GET, "/").permitAll()
                 .antMatchers(HttpMethod.GET, "/genero").permitAll()
                 .antMatchers(HttpMethod.GET, "/comentario").permitAll()
@@ -44,7 +41,7 @@ public class JWTConfiguracao extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/filme/populares/{index}").permitAll().anyRequest()
                 .authenticated().and().addFilter(new JWTAutenticarFilter(authenticationManager()))
                 .addFilter(new JWTValidarFilter(authenticationManager())).sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().cors().and().csrf().disable();
 
         // ORDEM
         // Permiti todos post do /login
@@ -54,15 +51,6 @@ public class JWTConfiguracao extends WebSecurityConfigurerAdapter {
         // add Filter
         // Ambinte STATELESS para não salvar o estado do usuario.
 
-    }
-    @Bean
-    CorsConfigurationSource corsConfigurationSource(){
-        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-
-        CorsConfiguration corsConfiguration = new CorsConfiguration().applyPermitDefaultValues();
-        source.registerCorsConfiguration("/**",corsConfiguration);
-
-        return source;
     }
 
 }
