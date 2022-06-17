@@ -157,27 +157,4 @@ public class FilmeDto {
         this.genre_ids = genre_ids;
     }
 
-//    public Filme filmeDtoToFilme() {
-//
-//        Filme filme = new Filme();
-//
-//        filme.setId(this.id);
-//        filme.setNome(this.title);
-//        filme.setGeneros(this.genres);
-//        filme.setDataLancamento(this.release_date);
-//        filme.setMediaVotos(this.vote_average);
-//        filme.setMediaVotosLocal(this.vote_average_local);
-//        filme.setQuantVotos(this.vote_count);
-//        filme.setDescricao(this.overview);
-//        filme.setStatus(this.status);
-//
-//        filme.setElenco(this.elencoDto.elencoDtoToElenco());
-//
-//        filme.setComentarios(this.comentarios);
-//
-//        filme.setPoster(this.poster_path);
-//        filme.setBackdrop(this.backdrop_path);
-//
-//        return filme;
-//    }
 }

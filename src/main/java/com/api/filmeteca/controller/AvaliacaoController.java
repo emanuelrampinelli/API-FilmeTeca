@@ -23,7 +23,7 @@ public class AvaliacaoController {
     @Autowired
     private AvaliacaoService avaliacaoService;
 
-    
+
     @PostMapping
     public ResponseEntity<Object> saveAvaliacao (@Valid @RequestBody AvaliacaoDto avaliacaoDto){
 

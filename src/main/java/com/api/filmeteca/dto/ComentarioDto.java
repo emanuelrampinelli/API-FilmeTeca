@@ -20,8 +20,7 @@ public class ComentarioDto {
     private Usuario usuario;
 
     @NotNull
-    private long id_filme;
-
+    private FilmeDto filmeDto;
 
     public UUID getId() {
         return id;
@@ -39,12 +38,12 @@ public class ComentarioDto {
         this.dataCasdatro = dataCasdatro;
     }
 
-    public long getId_filme() {
-        return id_filme;
+    public String getTexto() {
+        return texto;
     }
 
-    public void setId_filme(int id_filme) {
-        this.id_filme = id_filme;
+    public void setTexto(String texto) {
+        this.texto = texto;
     }
 
     public Usuario getUsuario() {
@@ -55,19 +54,11 @@ public class ComentarioDto {
         this.usuario = usuario;
     }
 
-    public String getTexto() {
-        return texto;
+    public FilmeDto getFilmeDto() {
+        return filmeDto;
     }
 
-    public void setTexto(String texto) {
-        this.texto = texto;
-    }
-
-    public Date getData() {
-        return dataCasdatro;
-    }
-
-    public void setData(Date dataCasdatro) {
-        this.dataCasdatro = dataCasdatro;
+    public void setFilmeDto(FilmeDto filmeDto) {
+        this.filmeDto = filmeDto;
     }
 }
