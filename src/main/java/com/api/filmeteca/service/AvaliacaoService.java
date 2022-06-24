@@ -17,17 +17,17 @@ public class AvaliacaoService {
     private AvaliacaoRepository avaliacaoRepository;
 
 
-    public Avaliacao saveAvaliacao(Avaliacao avaliacao){
+    public Avaliacao save(Avaliacao avaliacao){
 
         return avaliacaoRepository.save(avaliacao);
     }
 
-    public List<Avaliacao> findPorUsuario(Usuario usuario){
+    public List<Avaliacao> findByUsuario(Usuario usuario){
 
         return avaliacaoRepository.findByUsuario(usuario);
     }
 
-    public List<Avaliacao> findPorFilme(FilmeDto filmeDto){
+    public List<Avaliacao> findByFilme(FilmeDto filmeDto){
 
         return avaliacaoRepository.findByIdFilme(filmeDto.getId());
     }

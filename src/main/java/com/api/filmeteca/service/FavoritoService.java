@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class FavoritoService {
@@ -29,7 +28,7 @@ public class FavoritoService {
     }
 
 
-    public Optional<Favorito> findByUsuario(Usuario usuario){
+    public List<Favorito> findByUsuario(Usuario usuario){
 
         return favoritoRespository.findByUsuario(usuario);
     }

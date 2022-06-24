@@ -11,6 +11,6 @@ import java.util.Optional;
 @Repository
 public interface FavoritoRespository extends JpaRepository<Favorito,Long> {
 
-    public Optional<Favorito> findByUsuario(Usuario usuario);
+    public List<Favorito> findByUsuario(Usuario usuario);
     public List<Favorito> findByUsuarioAndIdFilme(Usuario usuario,Long idFilme);
 }

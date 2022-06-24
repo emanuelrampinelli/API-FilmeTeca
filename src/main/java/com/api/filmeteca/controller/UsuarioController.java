@@ -5,8 +5,7 @@ import java.util.Optional;
 
 import com.api.filmeteca.dto.UsuarioDto;
 import com.api.filmeteca.model.Usuario;
-import com.api.filmeteca.repository.UsuarioRepository;
-import com.api.filmeteca.service.UsuarioService;
+import com.api.filmeteca.service.*;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
-
 @RestController
 @RequestMapping("/auth")
 public class UsuarioController {
@@ -32,10 +30,22 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
     @Autowired
+    private FavoritoService favoritoService;
+
+    @Autowired
+    private ComentarioService comentarioService;
+
+    @Autowired
+    private InteresseService interesseService;
+
+    @Autowired
+    private AvaliacaoService avaliacaoService;
+
+    @Autowired
     private PasswordEncoder encoder;
 
     @GetMapping
-    public ResponseEntity<Object> findUsuario() {
+    public ResponseEntity<Object> findByUsuario() {
 
         String user = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
@@ -48,15 +58,22 @@ public class UsuarioController {
         }
 
         Usuario usuario = optUsuario.get();
+        UsuarioDto usuarioDto = new UsuarioDto();
 
-        return ResponseEntity.status(HttpStatus.OK).body(usuario);
+        //Passa as informacoes para Model.
+        BeanUtils.copyProperties(optUsuario.get(), usuarioDto);
+
+        usuarioDto.setAvaliacaos(avaliacaoService.findByUsuario(usuario));
+        usuarioDto.setComentarios(comentarioService.findByUsuario(usuario));
+        usuarioDto.setInteresses(interesseService.findByUsuario(usuario));
+        usuarioDto.setFavoritos(favoritoService.findByUsuario(usuario));
+
+        return ResponseEntity.status(HttpStatus.OK).body(usuarioDto);
     }
 
 
     @PostMapping
-    public ResponseEntity<Object> createUsuario(@Valid @RequestBody UsuarioDto usuarioDto) {
-
-        Date dataCadastro = new Date();
+    public ResponseEntity<Object> save(@Valid @RequestBody UsuarioDto usuarioDto) {
 
         //Apenas o nome não esta sendo tratado @Valid do DTO.
         if(usuarioDto.getNome() == null){
@@ -69,7 +86,7 @@ public class UsuarioController {
         //Passa as informacoes para Model.
         Usuario usuario = new Usuario();
         BeanUtils.copyProperties(usuarioDto, usuario);
-        usuario.setDataCadastro(dataCadastro);
+        usuario.setDataCadastro(new Date());
 
         return ResponseEntity.status(HttpStatus.OK).body(usuarioService.save(usuario));
 

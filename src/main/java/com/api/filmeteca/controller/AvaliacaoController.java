@@ -31,7 +31,7 @@ public class AvaliacaoController {
         BeanUtils.copyProperties(avaliacaoDto, avaliacao);
         avaliacao.setDataCadastro(new Date());
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(avaliacaoService.saveAvaliacao(avaliacao));
+        return ResponseEntity.status(HttpStatus.CREATED).body(avaliacaoService.save(avaliacao));
     }
 
     @GetMapping("/usuario")
@@ -44,7 +44,7 @@ public class AvaliacaoController {
         Usuario usuario = new Usuario();
         BeanUtils.copyProperties(usuarioDto, usuario);
 
-        return ResponseEntity.status(HttpStatus.OK).body(avaliacaoService.findPorUsuario(usuario));
+        return ResponseEntity.status(HttpStatus.OK).body(avaliacaoService.findByUsuario(usuario));
 
     }
 
@@ -55,7 +55,7 @@ public class AvaliacaoController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
 
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(avaliacaoService.findPorFilme(filmeDto));
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(avaliacaoService.findByFilme(filmeDto));
     }
 
 }

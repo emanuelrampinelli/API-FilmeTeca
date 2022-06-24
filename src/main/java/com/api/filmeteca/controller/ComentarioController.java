@@ -45,7 +45,7 @@ public class ComentarioController {
         Usuario usuario = new Usuario();
         BeanUtils.copyProperties(usuarioDto, usuario);
 
-        return ResponseEntity.status(HttpStatus.OK).body(comentarioService.findComentario(usuario));
+        return ResponseEntity.status(HttpStatus.OK).body(comentarioService.findByUsuario(usuario));
 
     }
 
@@ -56,7 +56,7 @@ public class ComentarioController {
         BeanUtils.copyProperties(comentarioDto, comentario);
         comentario.setDataCadastro(new Date());
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(comentarioService.saveComentario(comentario));
+        return ResponseEntity.status(HttpStatus.CREATED).body(comentarioService.save(comentario));
     }
 
 }

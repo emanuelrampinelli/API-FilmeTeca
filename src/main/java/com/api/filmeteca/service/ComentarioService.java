@@ -20,12 +20,12 @@ public class ComentarioService {
     @Autowired
     private FilmeService filmeService;
 
-    public Comentario saveComentario(Comentario comentario) {
+    public Comentario save(Comentario comentario) {
 
         return comentarioRepository.save(comentario);
     }
 
-    public List<Comentario> findComentario(Usuario usuario) {
+    public List<Comentario> findByUsuario(Usuario usuario) {
 
         return comentarioRepository.findByUsuario(usuario);
     }
