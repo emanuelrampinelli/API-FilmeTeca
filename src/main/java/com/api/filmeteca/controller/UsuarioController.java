@@ -1,7 +1,5 @@
 package com.api.filmeteca.controller;
 
-
-
 import java.util.Date;
 import java.util.Optional;
 
@@ -10,14 +8,12 @@ import com.api.filmeteca.model.Usuario;
 import com.api.filmeteca.repository.UsuarioRepository;
 import com.api.filmeteca.service.UsuarioService;
 
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,9 +32,6 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
     @Autowired
-    private UsuarioRepository usuarioRepository;
-
-    @Autowired
     private PasswordEncoder encoder;
 
     @GetMapping
@@ -47,7 +40,7 @@ public class UsuarioController {
         String user = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         //Verifica se existe este usuario em banco
-        Optional<Usuario> optUsuario = usuarioRepository.findByEmail(user);
+        Optional<Usuario> optUsuario = usuarioService.findByEmail(user);
 
         //Caso nao encontre, return nao autorizado
         if (optUsuario.isEmpty()) {
@@ -82,21 +75,4 @@ public class UsuarioController {
 
     }
 
-    @PostMapping("/isValid")
-    public ResponseEntity<Boolean> testeUsuario(@Valid @RequestBody UsuarioDto usuarioDto) {
-
-        Optional<Usuario> optUsuario = usuarioRepository.findByEmail(usuarioDto.getEmail());
-
-        if (optUsuario.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(false);
-        }
-
-        Usuario usuario = optUsuario.get();
-        boolean isValid = encoder.matches(usuarioDto.getSenha(), usuario.getSenha());
-
-        HttpStatus status = isValid ? HttpStatus.OK : HttpStatus.UNAUTHORIZED;
-
-        return ResponseEntity.status(status).body(isValid);
-
-    }
 }

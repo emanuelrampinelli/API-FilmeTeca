@@ -15,10 +15,26 @@ public class Favorito {
     private Date data;
 
     @Column(nullable = false)
-    private Long id_filme;
+    private Long idFilme;
 
     @ManyToOne
     private Usuario usuario;
+
+    public Long getIdFilme() {
+        return idFilme;
+    }
+
+    public void setIdFilme(Long idFilme) {
+        this.idFilme = idFilme;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 
     public Long getId() {
         return id;

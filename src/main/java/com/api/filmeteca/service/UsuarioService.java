@@ -1,6 +1,7 @@
 package com.api.filmeteca.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.api.filmeteca.model.Usuario;
 import com.api.filmeteca.repository.UsuarioRepository;
@@ -19,8 +20,11 @@ public class UsuarioService {
         return usuarioRepository.findAll();
     }
 
-    public Usuario save(Usuario usuario) {
-        return usuarioRepository.save(usuario);
+    public Usuario save(Usuario usuario) {return usuarioRepository.save(usuario);}
+
+    public Optional<Usuario> findByEmail(String email){
+
+        return usuarioRepository.findByEmail(email);
     }
 
 }
