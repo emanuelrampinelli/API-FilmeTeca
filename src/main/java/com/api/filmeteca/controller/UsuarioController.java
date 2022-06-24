@@ -15,6 +15,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,13 +42,12 @@ public class UsuarioController {
     private PasswordEncoder encoder;
 
     @GetMapping
-    public ResponseEntity<Object> findUsuario(@Valid @RequestBody UsuarioDto usuarioDto) {
+    public ResponseEntity<Object> findUsuario() {
 
-        String email = usuarioDto.getEmail();
-        String senha = usuarioDto.getSenha();
+        String user = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         //Verifica se existe este usuario em banco
-        Optional<Usuario> optUsuario = usuarioRepository.findByEmail(email);
+        Optional<Usuario> optUsuario = usuarioRepository.findByEmail(user);
 
         //Caso nao encontre, return nao autorizado
         if (optUsuario.isEmpty()) {
@@ -54,11 +56,7 @@ public class UsuarioController {
 
         Usuario usuario = optUsuario.get();
 
-        //Verifica a senha (retorne OK ou UNAUTHORIZED)
-        boolean isValid = encoder.matches(senha, usuario.getSenha());
-        HttpStatus status = isValid ? HttpStatus.OK : HttpStatus.UNAUTHORIZED;
-
-        return ResponseEntity.status(status).body(usuarioRepository.findByEmail(email));
+        return ResponseEntity.status(HttpStatus.OK).body(usuario);
     }
 
 
@@ -79,6 +77,7 @@ public class UsuarioController {
         Usuario usuario = new Usuario();
         BeanUtils.copyProperties(usuarioDto, usuario);
         usuario.setDataCadastro(dataCadastro);
+
         return ResponseEntity.status(HttpStatus.OK).body(usuarioService.save(usuario));
 
     }
