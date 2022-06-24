@@ -4,21 +4,19 @@ import com.api.filmeteca.model.Usuario;
 
 import javax.validation.constraints.NotNull;
 import java.util.Date;
-import java.util.UUID;
 
 public class AvaliacaoDto {
 
-    private UUID id;
+    private Long id;
 
-    @NotNull
     private Long idFilme;
-
-    @NotNull
-    private Double valor;
 
     private Date dataCadastro;
 
     private Usuario usuario;
+
+    @NotNull
+    private Double valor;
 
     public Usuario getUsuario() {
         return usuario;
@@ -28,11 +26,11 @@ public class AvaliacaoDto {
         this.usuario = usuario;
     }
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

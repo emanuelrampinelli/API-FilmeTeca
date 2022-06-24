@@ -60,7 +60,7 @@ public class InteresseController {
     }
 
     @GetMapping
-    public ResponseEntity<Object> findByUser(){
+    public ResponseEntity<Object> findByUsuario(){
 
         //GET email do user
         String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

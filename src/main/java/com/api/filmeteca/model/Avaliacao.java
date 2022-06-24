@@ -2,15 +2,14 @@ package com.api.filmeteca.model;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.UUID;
 
 @Entity
-@Table(name="avaliacao")
+@Table(name="AVALIACAO")
 public class Avaliacao {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    private Long id;
 
     @Column(nullable = false)
     private Long idFilme;
@@ -32,11 +31,11 @@ public class Avaliacao {
         this.usuario = usuario;
     }
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

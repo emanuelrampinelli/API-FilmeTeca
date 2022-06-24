@@ -13,4 +13,6 @@ public interface AvaliacaoRepository extends JpaRepository<Avaliacao,Long> {
     public List<Avaliacao> findByIdFilme(Long id);
 
     public List<Avaliacao> findByUsuario(Usuario usuario);
+
+    public List<Avaliacao> findByUsuarioAndIdFilme(Usuario usuario, Long idFilme);
 }
