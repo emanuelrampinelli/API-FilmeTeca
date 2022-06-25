@@ -103,7 +103,6 @@ public class ComentarioController {
 
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
-
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
