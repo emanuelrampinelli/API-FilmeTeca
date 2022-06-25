@@ -1,5 +1,6 @@
 package com.api.filmeteca.service;
 
+import com.api.filmeteca.dto.AvaliacaoDto;
 import com.api.filmeteca.dto.FilmeDto;
 import com.api.filmeteca.model.Avaliacao;
 
@@ -45,7 +46,7 @@ public class AvaliacaoService {
         avaliacaoRepository.delete(avaliacao);
     }
 
-    public Avaliacao update(Avaliacao avaliacao){
+    public Avaliacao update(AvaliacaoDto avaliacao){
 
         //Carrega Avaliacao
         Optional<Avaliacao> avaliacaoOptional = avaliacaoRepository.findById(avaliacao.getId());

@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "COMENTARIO")
@@ -14,44 +13,17 @@ public class Comentario implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull
-    @Column(unique = false, length = 200)
+    @Column(nullable = false, length = 200)
     private String texto;
 
-    @NotNull
-    @Column
+    @Column(nullable = false)
     private Date dataCadastro;
 
-    @NotNull
-    @Column
-    private long id_filme;
+    @Column(nullable = false)
+    private Long idFilme;
 
     @ManyToOne
     private Usuario usuario;
-
-    public long getId_filme() {
-        return id_filme;
-    }
-
-    public void setId_filme(long id_filme) {
-        this.id_filme = id_filme;
-    }
-
-    public Date getDataCadastro() {
-        return dataCadastro;
-    }
-
-    public void setDataCadastro(Date dataCadastro) {
-        this.dataCadastro = dataCadastro;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
 
     public Long getId() {
         return id;
@@ -69,4 +41,27 @@ public class Comentario implements Serializable {
         this.texto = texto;
     }
 
+    public Date getDataCadastro() {
+        return dataCadastro;
+    }
+
+    public void setDataCadastro(Date dataCadastro) {
+        this.dataCadastro = dataCadastro;
+    }
+
+    public Long getIdFilme() {
+        return idFilme;
+    }
+
+    public void setIdFilme(Long idFilme) {
+        this.idFilme = idFilme;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 }

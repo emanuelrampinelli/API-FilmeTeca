@@ -2,7 +2,6 @@ package com.api.filmeteca.controller;
 
 import com.api.filmeteca.dto.InteresseDto;
 
-import com.api.filmeteca.model.Comentario;
 import com.api.filmeteca.model.Interesse;
 import com.api.filmeteca.model.Usuario;
 import com.api.filmeteca.service.InteresseService;
@@ -74,6 +73,17 @@ public class InteresseController {
         }
 
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+    }
+
+    @DeleteMapping
+    public ResponseEntity<Object> delete(@RequestBody InteresseDto interesseDto){
+
+        Interesse interesse = new Interesse();
+        BeanUtils.copyProperties(interesseDto, interesse);
+
+        interesseService.delete(interesse);
+
+        return ResponseEntity.status(HttpStatus.OK).body(null);
     }
 
 }

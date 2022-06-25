@@ -8,9 +8,14 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
+
 @Repository
 public interface FavoritoRespository extends JpaRepository<Favorito,Long> {
 
+    public Optional<Favorito> findById(Long id);
+
     public List<Favorito> findByUsuario(Usuario usuario);
+
     public List<Favorito> findByUsuarioAndIdFilme(Usuario usuario,Long idFilme);
+
 }

@@ -5,28 +5,25 @@ import com.api.filmeteca.model.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 public class ComentarioDto {
 
-    private UUID id;
+    private Long id;
 
     private Date dataCasdatro;
 
     @NotNull
     private String texto;
 
-    @NotNull
     private Usuario usuario;
 
-    @NotNull
-    private FilmeDto filmeDto;
+    private Long idFilme;
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -54,11 +51,11 @@ public class ComentarioDto {
         this.usuario = usuario;
     }
 
-    public FilmeDto getFilmeDto() {
-        return filmeDto;
+    public Long getIdFilme() {
+        return idFilme;
     }
 
-    public void setFilmeDto(FilmeDto filmeDto) {
-        this.filmeDto = filmeDto;
+    public void setIdFilme(Long idFilme) {
+        this.idFilme = idFilme;
     }
 }

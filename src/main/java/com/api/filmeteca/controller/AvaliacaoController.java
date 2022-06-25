@@ -82,9 +82,11 @@ public class AvaliacaoController {
     public ResponseEntity<Object> findByFilme(@PathVariable(value = "id") Long id){
 
         FilmeDto filmeDto = new FilmeDto();
-        filmeDto.setId(id);
 
-        if(filmeDto.getId() == null){
+        try{
+            filmeDto.setId(id);
+        }catch (NumberFormatException ex){
+            ex.printStackTrace();
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
 
@@ -94,10 +96,7 @@ public class AvaliacaoController {
     @PutMapping
     public ResponseEntity<Object> update (@Valid @RequestBody AvaliacaoDto avaliacaoDto){
 
-        Avaliacao avaliacao = new Avaliacao();
-        BeanUtils.copyProperties(avaliacaoDto, avaliacao);
-
-        Avaliacao result = avaliacaoService.update(avaliacao);
+        Avaliacao result = avaliacaoService.update(avaliacaoDto);
 
         if(result == null){
 

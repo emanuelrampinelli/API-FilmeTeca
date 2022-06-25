@@ -27,9 +27,16 @@ public class FavoritoService {
         return null;
     }
 
-
     public List<Favorito> findByUsuario(Usuario usuario){
 
         return favoritoRespository.findByUsuario(usuario);
     }
+
+    public void delete(Favorito favorito){
+
+        favoritoRespository.delete(favorito);
+
+    }
+
+
 }

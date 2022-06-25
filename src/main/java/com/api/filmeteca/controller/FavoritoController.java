@@ -28,7 +28,7 @@ public class FavoritoController {
     private UsuarioService usuarioService;
 
     @PostMapping
-    public ResponseEntity<Object> save (@Valid @RequestBody FavoritoDto favoritoDto){
+    public ResponseEntity<Object> save(@Valid @RequestBody FavoritoDto favoritoDto){
 
         //GET email do user
         String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -73,5 +73,16 @@ public class FavoritoController {
         }
 
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+    }
+
+    @DeleteMapping
+    public ResponseEntity<Object> delete(@RequestBody FavoritoDto favoritoDto){
+
+        Favorito favorito = new Favorito();
+        BeanUtils.copyProperties(favoritoDto, favorito);
+
+        favoritoService.delete(favorito);
+
+        return ResponseEntity.status(HttpStatus.OK).body(null);
     }
 }

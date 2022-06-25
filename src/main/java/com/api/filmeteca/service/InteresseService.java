@@ -1,5 +1,6 @@
 package com.api.filmeteca.service;
 
+import com.api.filmeteca.model.Favorito;
 import com.api.filmeteca.model.Interesse;
 import com.api.filmeteca.model.Usuario;
 import com.api.filmeteca.repository.InteresseRepository;
@@ -29,5 +30,11 @@ public class InteresseService {
     public List<Interesse> findByUsuario(Usuario usuario){
 
         return interesseRepository.findByUsuario(usuario);
+    }
+
+    public void delete(Interesse interesse){
+
+        interesseRepository.delete(interesse);
+
     }
 }

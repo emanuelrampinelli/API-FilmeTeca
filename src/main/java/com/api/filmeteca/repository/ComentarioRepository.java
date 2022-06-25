@@ -1,6 +1,5 @@
 package com.api.filmeteca.repository;
 
-import com.api.filmeteca.dto.ComentarioDto;
 import com.api.filmeteca.model.Comentario;
 
 import com.api.filmeteca.model.Usuario;
@@ -14,5 +13,9 @@ import java.util.Optional;
 public interface ComentarioRepository extends JpaRepository<Comentario, Long> {
 
     public List<Comentario> findByUsuario(Usuario usuario);
+
+    public List<Comentario> findByIdFilme(Long id);
+
+    public Optional<Comentario> findById(Long id);
 
 }
