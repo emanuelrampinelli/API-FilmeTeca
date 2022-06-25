@@ -3,7 +3,6 @@ package com.api.filmeteca.dto;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.api.filmeteca.model.Elenco;
 import com.api.filmeteca.model.Participante;
 
 public class ElencoDto {
@@ -43,17 +42,6 @@ public class ElencoDto {
 
     public void setDiretor(ParticipanteDto diretor) {
         this.diretor = diretor;
-    }
-
-    public Elenco elencoDtoToElenco() {
-
-        Elenco elenco = new Elenco();
-
-        elenco.setArtistas(listParticipanteDtoToListParticipante(this.cast));
-        elenco.setEquipe_producao(listParticipanteDtoToListParticipante(this.crew));
-        elenco.setDiretor(diretor.participanteDtoToParticipante());
-
-        return elenco;
     }
 
     private List<Participante> listParticipanteDtoToListParticipante(List<ParticipanteDto> participantesDto) {

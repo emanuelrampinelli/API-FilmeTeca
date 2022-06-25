@@ -21,7 +21,6 @@ public class FilmeDto {
     private String status;
 
     private ElencoDto elencoDto;
-
     private List<Comentario> comentarios;
 
     private String poster_path; // Link imagem - POSTER

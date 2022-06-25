@@ -12,20 +12,15 @@ public class GeneroService {
 
     private RestTemplate restTemplate;
 
-    private GenerosDto genres;
-
     public GeneroService() {
 
         this.restTemplate = new RestTemplate();
-        this.genres = new GenerosDto();
     }
-
     public GenerosDto getListGeneros() {
 
-        this.genres = this.restTemplate.getForObject(montaUrlListGeneros(), GenerosDto.class);
-        return this.genres;
-    }
+        return this.restTemplate.getForObject(montaUrlListGeneros(), GenerosDto.class);
 
+    }
     private String montaUrlListGeneros() {
 
         return LinkEnum.URL_LIST_GENEROS.getUrl() + "?" + ParamApiEnum.KEY_API.getConfig() + "&"

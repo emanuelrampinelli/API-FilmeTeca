@@ -6,7 +6,7 @@ public enum LinkEnum {
     URL_BASE_FILME("https://api.themoviedb.org/3/movie/"),
     URL_BASE_POPULARES("https://api.themoviedb.org/3/movie/popular"),
     URL_DIRETOR("https://api.themoviedb.org/3/movie/"),
-    URL_SEARCH("https://api.themoviedb.org/3/search/multi");
+    URL_SEARCH("https://api.themoviedb.org/3/search/movie");
 
     private String url;
 

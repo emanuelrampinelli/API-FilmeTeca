@@ -11,14 +11,6 @@ public class MainController {
     @GetMapping(value = "/")
     public String mainController() {
 
-        String text = "" +
-                "<h2>" +
-                "GET - <DOMAIN>/filme/populares/{index} <br>" +
-                "GET - <DOMAIN>/filme/{id} <br>" +
-                "GET - <DOMAIN>/filme/search/{texto} <br><br><h2>" +
-                "GET - <DOMAIN>/genero<br>" +
-                "<h1>";
-
-        return text;
+        return "IH-LIGOU";
     }
 }

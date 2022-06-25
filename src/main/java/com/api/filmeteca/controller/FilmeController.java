@@ -1,10 +1,9 @@
 package com.api.filmeteca.controller;
-
-import com.api.filmeteca.dto.FilmeDto;
-import com.api.filmeteca.dto.FilmotecaDto;
 import com.api.filmeteca.service.FilmeService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,18 +17,22 @@ public class FilmeController {
     private FilmeService filmeService;
 
     @GetMapping("/populares/{index}")
-    public FilmotecaDto getFilmesPopulares(@PathVariable(value = "index") String index) {
-        return filmeService.getFilmesPopulares(index);
+    public ResponseEntity<Object> getFilmesPopulares(@PathVariable(value = "index") String index) {
+
+        return ResponseEntity.status(HttpStatus.OK).body(filmeService.getFilmesPopulares(index));
     }
 
     @GetMapping("/{id}")
-    public FilmeDto getFilme(@PathVariable(value = "id") String id) {
-        return filmeService.getFilme(id);
+    public ResponseEntity<Object>  getFilme(@PathVariable(value = "id") String id) {
+
+        return ResponseEntity.status(HttpStatus.OK).body(filmeService.getFilme(id));
+
     }
 
     @GetMapping("/search/{texto}")
-    public FilmotecaDto procurarFilmes(@PathVariable(value = "texto") String texto) {
-        return filmeService.procurarFilmes(texto);
+    public ResponseEntity<Object> procurarFilmes(@PathVariable(value = "texto") String texto) {
+
+        return ResponseEntity.status(HttpStatus.OK).body(filmeService.procurarFilmes(texto));
     }
 
 }

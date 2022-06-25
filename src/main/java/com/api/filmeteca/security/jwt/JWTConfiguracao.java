@@ -36,7 +36,6 @@ public class JWTConfiguracao extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/avaliacao/filme/{id}").permitAll()
                 .antMatchers(HttpMethod.GET, "/comentario/filme/{id}").permitAll()
                 .antMatchers(HttpMethod.GET, "/genero").permitAll()
-                .antMatchers(HttpMethod.GET, "/comentario").permitAll()
                 .antMatchers(HttpMethod.GET, "/filme/{id}").permitAll()
                 .antMatchers(HttpMethod.GET, "/filme/search/{texto}").permitAll()
                 .antMatchers(HttpMethod.GET, "/filme/populares/{index}").permitAll().anyRequest()

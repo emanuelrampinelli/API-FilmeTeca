@@ -5,8 +5,10 @@ import com.api.filmeteca.dto.ParticipanteDto;
 import com.api.filmeteca.enums.LinkEnum;
 import com.api.filmeteca.enums.ParamApiEnum;
 
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+@Service
 public class ElencoService {
 
     private RestTemplate restTemplate;
