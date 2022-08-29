@@ -1,4 +1,4 @@
-# API REST - FilmeTeca (Em Desenvolvimento)
+# API REST - FilmeTeca
 
 <h2>Introdução</h2>
 
